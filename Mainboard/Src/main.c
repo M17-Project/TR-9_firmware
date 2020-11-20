@@ -1250,8 +1250,8 @@ int main(void)
 
   //Codec2
   cod = codec2_create(CODEC2_MODE_3200);
-  HAL_TIM_Base_Start(&htim6);
-  HAL_ADC_Start_DMA(&hadc1, audio_samples, 320);
+  //HAL_TIM_Base_Start(&htim6);
+  //HAL_ADC_Start_DMA(&hadc1, audio_samples, 320);
 
   sprintf(packet.src, "SP5WWP/P");
   sprintf(packet.dst, "M17-M17 A");
@@ -1292,7 +1292,7 @@ int main(void)
   HAL_Delay(2-1);
   ADF_WriteReg((uint32_t)0x0010C|(uint32_t)1<<8);			//DPL (0x10C)
   HAL_Delay(2-1);
-  ADF_WriteReg((uint32_t)0x5770B4); //0x5770B4
+  ADF_WriteReg((uint32_t)0x5770B4|(0b10<<8)); //0x5770B4
   HAL_Delay(2-1);
   ADF_WriteReg((uint32_t)0x01ED5);	//coarse cal ON
   HAL_Delay(2-1);
@@ -1337,7 +1337,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(data_rdy)
+	  /*if(data_rdy)
 	  {
 		  uint16_t offs=buff_num*320;	//either 0 or 320
 
@@ -1354,7 +1354,7 @@ int main(void)
 		  MoIP_Send(udp_frame);
 		  packet.fn++;
 		  data_rdy=0;
-	  }
+	  }*/
 
 	  /*HAL_GPIO_WritePin(LED_GRN_GPIO_Port, LED_GRN_Pin, 0);
 	  HAL_Delay(50);
@@ -1376,7 +1376,7 @@ int main(void)
 	  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, 1);
 	  HAL_Delay(450);*/
 
-	  if(key_pressed)
+	  /*if(key_pressed)
 	  {
 		  if(kbd_key=='R')
 		  {
@@ -1416,7 +1416,7 @@ int main(void)
 		  }
 
 		  key_pressed=0;
-	  }
+	  }*/
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
